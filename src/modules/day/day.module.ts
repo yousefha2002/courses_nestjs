@@ -13,5 +13,6 @@ import { DayService } from './day.service';
     },
     DayService
   ],
+  exports:[DayService]
 })
 export class DayModule {}

@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, Min, MinLength} from "class-validator";
+import { IsDate, IsNotEmpty, Matches, Min, MinLength} from "class-validator";
 import {Transform} from 'class-transformer'
 
 export class CourseBasic {
@@ -32,4 +32,20 @@ export class CourseBasic {
     @IsDate()
     @Transform(({ value }) => new Date(value))
     endDate: Date;
+}
+
+export class CourseDayBasic {
+    @IsNotEmpty()
+    courseId:number
+
+    @IsNotEmpty()
+    dayId:number
+
+    @IsNotEmpty()
+    @Matches(/^(1[0-2]|0?[1-9]):([0-5]?[0-9])$/)
+    startHour:string
+
+    @IsNotEmpty()
+    @Matches(/^(1[0-2]|0?[1-9]):([0-5]?[0-9])$/)
+    endHour:string
 }

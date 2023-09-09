@@ -3,7 +3,7 @@ import { CourseService } from './course.service';
 import { Role } from 'src/common/types/role.enum';
 import { Roles } from 'src/common/decorator/roles.decorator';
 import { AuthGuard } from 'src/common/util/guards.stradegey';
-import { CourseBasic } from './dto';
+import { CourseBasic, CourseDayBasic } from './dto';
 
 @Controller('course')
 export class CourseController {
@@ -15,5 +15,12 @@ export class CourseController {
     createCourse(@Body() dto:CourseBasic)
     {
         return this.courseService.createCourse(dto)
+    }
+    @Roles(Role.Admin)
+    @UseGuards(AuthGuard)
+    @Post('add-day')
+    addCourseDay(@Body() dto:CourseDayBasic)
+    {
+        return this.courseService.addCourseDay(dto)
     }
 }
