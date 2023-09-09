@@ -4,11 +4,19 @@ import {
   Model,
   DataType,
   BelongsToMany,
+  Scopes
 } from 'sequelize-typescript';
 import { Course } from '../course/course.entity';
 import { CourseDay } from '../courseDay/courseDay.entity';
 
 @Table
+@Scopes(() => ({
+  withoutTimeStamps: {
+    attributes: {
+      exclude: ['createdAt', 'updatedAt'],
+    },
+  },
+}))
 export class Day extends Model {
   @Column({ allowNull: false, autoIncrement: true, primaryKey: true })
   id: number;

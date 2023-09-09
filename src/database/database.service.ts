@@ -44,7 +44,7 @@ export const databaseProviders = [
         StudentQuiz,
         SelectedAnswer
       ]);
-      await sequelize.sync({alter:true});
+      await sequelize.sync();
       return sequelize;
     },
   },

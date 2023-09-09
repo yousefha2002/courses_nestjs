@@ -22,8 +22,18 @@ export class CategoryService {
         return {message:"category has been created"}
     }
 
-    async getAllCategories():Promise<Category[]>
+    getAllCategories():Promise<Category[]>
     {
         return this.Categoryepository.scope('withoutTimeStamps').findAll()
+    }
+
+    async checkCategory(id:number):Promise<Category>
+    {
+        const category  = await this.Categoryepository.findByPk(id)
+        if(!category)
+        {
+            throw new BadRequestException('category has been not found')
+        }
+        return category
     }
 }
