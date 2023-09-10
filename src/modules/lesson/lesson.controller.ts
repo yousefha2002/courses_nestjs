@@ -3,7 +3,7 @@ import { LessonService } from './lesson.service';
 import { Roles } from 'src/common/decorator/roles.decorator';
 import { Role } from 'src/common/types/role.enum';
 import { AuthGuard } from 'src/common/util/guards.stradegey';
-import { LessonBasic } from './dto/lesson.dto';
+import { LessonBasic } from './dto';
 
 @Controller('lesson')
 export class LessonController {

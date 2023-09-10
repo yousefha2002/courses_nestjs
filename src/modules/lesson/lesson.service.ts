@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Lesson } from './lesson.entity';
 import { lessonRepositry } from 'src/constants/entityRepositry';
-import { LessonBasic } from './dto/lesson.dto';
+import { LessonBasic } from './dto';
 
 @Injectable()
 export class LessonService {

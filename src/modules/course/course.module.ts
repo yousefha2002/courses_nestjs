@@ -17,6 +17,7 @@ import { DatabaseModule } from 'src/database/database.module';
     },
     CourseService
   ],
-  imports:[CategoryModule,DayModule,LessonModule,DatabaseModule]
+  imports:[CategoryModule,DayModule,LessonModule,DatabaseModule],
+  exports:[CourseService]
 })
 export class CourseModule {}
