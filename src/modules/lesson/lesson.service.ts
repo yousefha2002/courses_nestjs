@@ -9,8 +9,8 @@ export class LessonService {
         private LessonRepositry: typeof Lesson,
     ) {}
 
-    createLesson(courseId:number,date:Date):Promise<Lesson>
+    createLesson(courseId:number,date:Date,transaction:any):Promise<Lesson>
     {
-        return this.LessonRepositry.create({date,courseId})
+        return this.LessonRepositry.create({date,courseId},{transaction})
     }
 }
