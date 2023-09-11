@@ -1,4 +1,4 @@
-import { IsNotEmpty } from "class-validator";
+import { ArrayMaxSize, ArrayMinSize, IsNotEmpty } from "class-validator";
 
 export class QuestionBasic {
     @IsNotEmpty()
@@ -6,4 +6,12 @@ export class QuestionBasic {
 
     @IsNotEmpty()
     quziId:number
+
+    @IsNotEmpty()
+    @ArrayMinSize(2)
+    @ArrayMaxSize(4)
+    answers: {
+        isCorrect: boolean;
+        title: string;
+    }[];
 }
