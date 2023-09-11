@@ -14,6 +14,7 @@ import { QuizService } from './quiz.service';
     },
     QuizService
   ],
-  imports:[CourseModule]
+  imports:[CourseModule],
+  exports:[QuizService]
 })
 export class QuizModule {}

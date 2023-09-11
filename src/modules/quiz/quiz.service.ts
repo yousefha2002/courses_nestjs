@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, BadRequestException } from '@nestjs/common';
 import { quizRepositry } from 'src/constants/entityRepositry';
 import { Quiz } from './quiz.entity';
 import { QuizBasic } from './dto';
@@ -18,5 +18,15 @@ export class QuizService {
         await this.courseService.checkCourse(dto.courseId)
         await this.QuizRepositry.create({...dto})
         return {message:"quiz has been created"}
+    }
+
+    async checkQuiz(id:number)
+    {
+        const quiz = await this.QuizRepositry.findByPk(id)
+        if(!quiz)
+        {
+            throw new BadRequestException('quiz is not found')
+        }
+        return quiz ;
     }
 }
