@@ -1,3 +1,4 @@
+import { StudentCourseService } from './../studentCourse/studentCourse.service';
 import { Injectable, Inject, BadRequestException } from '@nestjs/common';
 import { courseRepositry } from 'src/constants/entityRepositry';
 import { Course } from './course.entity';
@@ -7,6 +8,8 @@ import { compareDates } from 'src/common/util/compareDates';
 import { DayService } from '../day/day.service';
 import { LessonService } from '../lesson/lesson.service';
 import { Sequelize } from 'sequelize';
+import { Category } from '../category/category.entity';
+import { Lesson } from '../lesson/lesson.entity';
 
 @Injectable()
 export class CourseService {
@@ -17,6 +20,7 @@ export class CourseService {
         private categoryService : CategoryService,
         private dayService : DayService,
         private lessonService : LessonService,
+        private studentCourseService : StudentCourseService,
         
         @Inject('SEQUELIZE')
         private sequelize : Sequelize
@@ -77,6 +81,31 @@ export class CourseService {
         {
             throw new BadRequestException('course is not found')
         }
+        return course
+    }
+
+    getCourses():Promise<Course[]>
+    {
+        return this.CourseRepositry.scope('withoutTimeStamps').findAll({
+            order:[['createdAt','DESC']],
+            include:[{model:Category.scope('withoutTimeStamps')}]
+        })
+    }
+
+    async getSingelCourse(courseId:number,userId:number):Promise<Course>
+    {
+        await this.studentCourseService.isStudentRegister(courseId,userId)
+        const course = await this.CourseRepositry.scope('withoutTimeStamps').findOne({
+            where:{id:courseId},
+            include:[
+                {
+                    model:Lesson.scope('withoutTimeStamps'),
+                }
+            ],
+            order: [
+                [{ model: Lesson, as: 'lessons' }, 'createdAt', 'DESC']
+            ],
+        })
         return course
     }
 }

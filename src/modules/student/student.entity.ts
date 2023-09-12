@@ -6,7 +6,7 @@ import {
   BelongsToMany,
 } from 'sequelize-typescript';
 import { Course } from '../course/course.entity';
-import { StudentCourse } from '../studentCourse/studentCourseentity';
+import { StudentCourse } from '../studentCourse/studentCourse.entity';
 import { StudentQuiz } from '../studentQuiz/studentQuiz.entity';
 import { Quiz } from '../quiz/quiz.entity';
 

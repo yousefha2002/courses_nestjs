@@ -7,6 +7,7 @@ import { CategoryModule } from '../category/category.module';
 import { DayModule } from '../day/day.module';
 import { LessonModule } from '../lesson/lesson.module';
 import { DatabaseModule } from 'src/database/database.module';
+import { StudentCourseModule } from '../studentCourse/studentCourse.module';
 
 @Module({
   controllers: [CourseController],
@@ -17,7 +18,7 @@ import { DatabaseModule } from 'src/database/database.module';
     },
     CourseService
   ],
-  imports:[CategoryModule,DayModule,LessonModule,DatabaseModule],
+  imports:[CategoryModule,DayModule,LessonModule,StudentCourseModule,DatabaseModule],
   exports:[CourseService]
 })
 export class CourseModule {}

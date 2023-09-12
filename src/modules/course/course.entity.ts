@@ -7,6 +7,7 @@ import {
   BelongsTo,
   BelongsToMany,
   HasMany,
+  Scopes
 } from 'sequelize-typescript';
 import { Category } from '../category/category.entity';
 import { Day } from '../day/day.entity';
@@ -14,10 +15,17 @@ import { CourseDay } from '../courseDay/courseDay.entity';
 import { Lesson } from '../lesson/lesson.entity';
 import { Media } from '../media/media.entity';
 import { Student } from '../student/student.entity';
-import { StudentCourse } from '../studentCourse/studentCourseentity';
+import { StudentCourse } from '../studentCourse/studentCourse.entity';
 import { Quiz } from '../quiz/quiz.entity';
 
 @Table
+@Scopes(() => ({
+  withoutTimeStamps: {
+    attributes: {
+      exclude: ['createdAt', 'updatedAt'],
+    },
+  },
+}))
 export class Course extends Model {
   @Column({ allowNull: false, autoIncrement: true, primaryKey: true })
   id: number;

@@ -5,10 +5,18 @@ import {
   DataType,
   ForeignKey,
   BelongsTo,
+  Scopes
 } from 'sequelize-typescript';
 import { Course } from '../course/course.entity';
 
 @Table
+@Scopes(() => ({
+  withoutTimeStamps: {
+    attributes: {
+      exclude: ['createdAt', 'updatedAt'],
+    },
+  },
+}))
 export class Lesson extends Model {
   @Column({ allowNull: false, autoIncrement: true, primaryKey: true })
   id: number;

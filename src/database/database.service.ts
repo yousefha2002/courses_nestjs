@@ -12,7 +12,7 @@ import { Question } from 'src/modules/question/question.entity';
 import { Quiz } from 'src/modules/quiz/quiz.entity';
 import { SelectedAnswer } from 'src/modules/slecectedAnswer/slecectedAnswer.entity';
 import { Student } from 'src/modules/student/student.entity';
-import { StudentCourse } from 'src/modules/studentCourse/studentCourseentity';
+import { StudentCourse } from 'src/modules/studentCourse/studentCourse.entity';
 import { StudentQuiz } from 'src/modules/studentQuiz/studentQuiz.entity';
 
 export const databaseProviders = [
