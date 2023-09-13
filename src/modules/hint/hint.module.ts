@@ -4,6 +4,7 @@ import { Hint } from './hint.entity';
 import { HintController } from './hint.controller';
 import { HintService } from './hint.service';
 import { CourseModule } from '../course/course.module';
+import { StudentCourseModule } from '../studentCourse/studentCourse.module';
 
 @Module({
   controllers: [HintController],
@@ -14,6 +15,6 @@ import { CourseModule } from '../course/course.module';
     },
     HintService
   ],
-  imports:[CourseModule]
+  imports:[CourseModule,StudentCourseModule]
 })
 export class HintModule {}

@@ -5,6 +5,7 @@ import { QuestionBasic } from './dto';
 import { QuizService } from '../quiz/quiz.service';
 import { AnswerService } from '../answer/answer.service';
 import { Sequelize } from 'sequelize';
+import { Answer } from '../answer/answer.entity';
 
 @Injectable()
 export class QuestionService {
@@ -40,4 +41,21 @@ export class QuestionService {
         }
         return {message:"question has been created"}
     }   
+
+    async getQuizQuestions(quizId:number,userId:number)
+    {
+        const quiz = await this.quizService.getQuiz(quizId,userId)
+        const questions = await this.QuestionRepositry.scope('withoutTimeStamps').findAll({
+            where:{quziId:quizId},
+            order: this.sequelize.random() ,
+            limit:quiz.numberOfQuistion,
+            include:[
+                {
+                    model:Answer.scope('withoutTimeStamps'),
+                    order: this.sequelize.random()
+                }
+            ]
+        })
+        return questions;
+    }
 }

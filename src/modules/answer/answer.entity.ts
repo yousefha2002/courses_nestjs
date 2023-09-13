@@ -1,8 +1,15 @@
-import { Column, Table, Model, DataType, ForeignKey, BelongsTo, HasMany } from 'sequelize-typescript';
+import { Column, Table, Model, DataType, ForeignKey,Scopes, BelongsTo, HasMany } from 'sequelize-typescript';
 import { Question } from '../question/question.entity';
 import { SelectedAnswer } from '../slecectedAnswer/slecectedAnswer.entity';
 
 @Table
+@Scopes(() => ({
+    withoutTimeStamps: {
+    attributes: {
+        exclude: ['createdAt', 'updatedAt'],
+    },
+    },
+}))
 export class Answer extends Model {
     @Column({ allowNull: false, autoIncrement: true, primaryKey: true })
     id: number;
