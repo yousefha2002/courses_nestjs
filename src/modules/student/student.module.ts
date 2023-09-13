@@ -14,6 +14,7 @@ import { CourseModule } from '../course/course.module';
     },
     StudentService
   ],
-  imports:[CourseModule]
+  imports:[CourseModule],
+  exports:[StudentService]
 })
 export class StudentModule {}

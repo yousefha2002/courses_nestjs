@@ -6,6 +6,7 @@ import { QuestionService } from './question.service';
 import { QuizModule } from '../quiz/quiz.module';
 import { AnswerModule } from '../answer/answer.module';
 import { DatabaseModule } from 'src/database/database.module';
+import { StudentModule } from '../student/student.module';
 
 @Module({
     controllers: [QuestionController],
@@ -16,6 +17,6 @@ import { DatabaseModule } from 'src/database/database.module';
         },
         QuestionService
     ],
-    imports:[QuizModule,AnswerModule,DatabaseModule]
+    imports:[QuizModule,AnswerModule,StudentModule,DatabaseModule]
 })
 export class QuestionModule {}

@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject,BadRequestException } from '@nestjs/common';
 import { questionRepositry } from 'src/constants/entityRepositry';
 import { Question } from './question.entity';
 import { QuestionBasic } from './dto';
@@ -6,6 +6,7 @@ import { QuizService } from '../quiz/quiz.service';
 import { AnswerService } from '../answer/answer.service';
 import { Sequelize } from 'sequelize';
 import { Answer } from '../answer/answer.entity';
+import { StudentService } from '../student/studend.service';
 
 @Injectable()
 export class QuestionService {
@@ -15,6 +16,7 @@ export class QuestionService {
 
         private readonly quizService : QuizService,
         private readonly answerService : AnswerService,
+        private readonly studentService : StudentService,
 
         @Inject('SEQUELIZE')
         private sequelize : Sequelize
@@ -44,7 +46,14 @@ export class QuestionService {
 
     async getQuizQuestions(quizId:number,userId:number)
     {
-        const quiz = await this.quizService.getQuiz(quizId,userId)
+        const [quiz,student] = await Promise.all([
+            this.quizService.getQuiz(quizId,userId),
+            this.studentService.findStudent(userId)
+        ])
+        const hasTakenQuiz = await quiz.$has('student', student);
+        if (hasTakenQuiz) {
+            throw new BadRequestException('Student has already taken this quiz');
+        }
         const questions = await this.QuestionRepositry.scope('withoutTimeStamps').findAll({
             where:{quziId:quizId},
             order: this.sequelize.random() ,
@@ -56,6 +65,7 @@ export class QuestionService {
                 }
             ]
         })
+        await quiz.$add('student',student);
         return questions;
     }
 }
