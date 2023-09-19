@@ -1,4 +1,5 @@
 # Description
+####This is a courses project where administrators can create courses with lessons, share hints for courses, and provide a library for sharing files. It also includes quizzes. Users can purchase courses if the maximum number of students for a course has not been reached. Users can take quizzes and see their answers after completing the quiz.
 
 # DataBase
 ![Untitled (1)](https://github.com/yousefha2002/courses_nestjs/assets/144475039/d8c04223-d73a-4ede-80f5-73fd8da8a6dc)
