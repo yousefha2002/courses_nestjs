@@ -1,5 +1,5 @@
 # Description
-This is a courses project where administrators can create courses with lessons, share hints for courses, and provide a library for sharing files. It also includes quizzes. Users can purchase courses if the maximum number of students for a course has not been reached. Users can take quizzes and see their answers after completing the quiz.
+This is courses project, administrators can create courses with lessons, share hints, and specify start and end dates for the course. They can also select specific days of the week, like Saturday and Sunday, for the course schedule. When these days are chosen, lessons will be automatically scheduled according to them. Additionally, there's a library for sharing files and a quiz feature. Users can purchase courses if the maximum student limit hasn't been reached. After taking quizzes, users can review their answers.
 
 # DataBase
 ![Untitled (1)](https://github.com/yousefha2002/courses_nestjs/assets/144475039/d8c04223-d73a-4ede-80f5-73fd8da8a6dc)
